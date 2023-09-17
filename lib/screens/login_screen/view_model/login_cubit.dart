@@ -22,12 +22,15 @@ class LoginCubit extends Cubit<LoginState> {
   {
     emit(LoginLoading());
     try{
-      Response data= await DioHelper.postData('/auth/login', email, password);
-     LoginModel model= LoginModel.fromJson(data.data);
-     CacheHelper.saveData(key: 'email', value: model.data.email);
-      print(model.data.token);
-     // FlutterSecureStorage().write(key: 'token', value: model.data.token);
-      emit(LoginSuccess());
+     Response data= await DioHelper.postData(data: {
+       'email':email,
+       'password':password,
+     },endPoint: 'auth/login');
+    LoginModel model= LoginModel.fromJson(data.data);
+   CacheHelper.saveData(key: 'token', value: model.data.token);
+     print(model.data.token);
+     print(CacheHelper.getData(key:'token'));
+     emit(LoginSuccess(model));
 
     }catch(error){
 

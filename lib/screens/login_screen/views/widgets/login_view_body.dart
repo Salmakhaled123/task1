@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:taskmanager/core/appcolors.dart';
 import 'package:taskmanager/core/appfont.dart';
 import 'package:taskmanager/core/approuter.dart';
+import 'package:taskmanager/core/diohelper.dart';
 import 'package:taskmanager/core/loginmodel.dart';
 import 'package:taskmanager/screens/login_screen/view_model/login_cubit.dart';
 
@@ -12,7 +13,9 @@ import 'custom_text_form_field.dart';
 
 class LoginViewBody extends StatelessWidget {
   LoginViewBody({super.key});
-
+TextEditingController emailController=TextEditingController();
+TextEditingController passController=TextEditingController();
+final formKey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +24,7 @@ class LoginViewBody extends StatelessWidget {
           child: BlocBuilder<LoginCubit, LoginState>(builder: (context, state) {
             var cubit = BlocProvider.of<LoginCubit>(context);
             return Form(
-                key: cubit.formKey,
+                key:formKey,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -42,7 +45,7 @@ class LoginViewBody extends StatelessWidget {
                         height: 20.h,
                       ),
                       CustomTextFormField(
-                        controller: cubit.emailController,
+                        controller: emailController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'please enter your email';
@@ -75,7 +78,7 @@ class LoginViewBody extends StatelessWidget {
                             }
                           },
                           inputType: TextInputType.visiblePassword,
-                          controller: cubit.passController),
+                          controller: passController),
                       SizedBox(
                         height: 20.h,
                       ),
@@ -98,13 +101,23 @@ class LoginViewBody extends StatelessWidget {
                         height: 48.h,
                         child: ElevatedButton(
                             onPressed: () {
-                              if (cubit.formKey.currentState!.validate()) {
-                               cubit.userLogin(cubit.emailController.text,
-                                    cubit.passController.text);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text('Login Successfully')));
-                                GoRouter.of(context).push(AppRouter.home);
+                              if (formKey.currentState!.validate()) {
+try{
+  cubit.userLogin(emailController.text, passController.text);
+  GoRouter.of(context).push(AppRouter.home);
+
+
+}catch(error){
+
+  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('there is an error')));
+}
+
+
+
+                                // ScaffoldMessenger.of(context).showSnackBar(
+                                //     const SnackBar(
+                                //         content: Text('Login Successfully')));
+
                               }
                             },
                             style: ElevatedButton.styleFrom(
