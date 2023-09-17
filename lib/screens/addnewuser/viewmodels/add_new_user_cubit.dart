@@ -11,7 +11,7 @@ class AddNewUserCubit extends Cubit<AddNewUserState> {
   dynamic type;
   changeType(value)
   {
-    if(value==RadioButton.admin || value==RadioButton.user ||value==RadioButton.user)
+    if(value==0 || value==1 ||value==2)
       {
         emit(ChangedSuccess());
 
@@ -19,23 +19,28 @@ class AddNewUserCubit extends Cubit<AddNewUserState> {
   }
  Future addNewUser(UserModel model)async
   {
+
     try{
-     await DioHelper.postData(endPoint: 'user/store',data: {
+      Response data= await DioHelper.postData(endPoint: 'user/store',data: {
         'name':model.name,
         'email':model.email,
         'phone':model.phone,
         'password':model.password,
-        'user_type':'2'
+        'user_type':model.userType.toString()
       },
          options: Options(headers: {
         'Authorization':'Bearer${CacheHelper.getData(key: 'token')}'
       }));
       print('add new user success');
+      print(data.data['message']);
+
       emit(AddNewUserSuccess());
     }catch(error){
+
       print(error.toString());
+
     }
   }
 }
-enum RadioButton {admin,manager,user }
+
 

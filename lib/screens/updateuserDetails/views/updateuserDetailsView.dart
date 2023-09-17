@@ -111,20 +111,20 @@ TextEditingController nameController=TextEditingController();
                           Row(
                             children: [
                               Radio(activeColor: AppColors.primaryColor,
-                                  value: RadioButton.admin, groupValue: 'types', onChanged: (value){
+                                  value: 0, groupValue: 'types', onChanged: (value){
                                    // cubit.changeType(value);
 
                                   }),
                               const Text('Admin'),
                               Radio(activeColor: AppColors.primaryColor,
-                                  value: RadioButton.admin, groupValue: 'types', onChanged: (value){
+                                  value: 1, groupValue: 'types', onChanged: (value){
 
                                    // cubit.changeType(value);
 
                                   }),
                               const Text('manager'),
                               Radio(activeColor: AppColors.primaryColor,
-                                  value: RadioButton.user, groupValue: 'types', onChanged: (value){
+                                  value: 2, groupValue: 'types', onChanged: (value){
                                   //  cubit.changeType(value);
                                   }),
                               const Text('user'),

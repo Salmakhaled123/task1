@@ -15,7 +15,7 @@ class AddNewUserViewBody extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passController = TextEditingController();
-  String ? types;
+  dynamic  types;
 
   @override
   Widget build(BuildContext context) {
@@ -99,20 +99,23 @@ class AddNewUserViewBody extends StatelessWidget {
                       Row(
                         children: [
                           Radio(activeColor: AppColors.primaryColor,
-                              value: RadioButton.admin, groupValue: types, onChanged: (value){
+                              value: 0, groupValue: types, onChanged: (value){
+                            types=value;
                           cubit.changeType(value);
 
                           }),
                           const Text('Admin'),
                           Radio(activeColor: AppColors.primaryColor,
-                              value: RadioButton.admin, groupValue: types, onChanged: (value){
-
+                              value: 1, groupValue: types, onChanged: (value){
+                                   types=value;
                             cubit.changeType(value);
 
                           }),
                           const Text('manager'),
                           Radio(activeColor: AppColors.primaryColor,
-                              value: RadioButton.user, groupValue: types, onChanged: (value){
+                              value: 2, groupValue: types, onChanged: (value)
+                              {
+                                types=value;
                             cubit.changeType(value);
                           }),
                           const Text('user'),
@@ -149,7 +152,7 @@ class AddNewUserViewBody extends StatelessWidget {
                               if (key.currentState!.validate()) {
                                 try {
                                   cubit.addNewUser(UserModel(
-                                    userType: 1,
+                                    userType: types,
                                     name: nameController.text,
                                     email: emailController.text,
                                     phone: phoneController.text,
