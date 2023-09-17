@@ -11,6 +11,7 @@ import 'package:taskmanager/screens/updateuserDetails/views/updateuserDetailsVie
 
 class AppRouter{
   static String home='/home';
+
   static String updateDepartment='/updateDepartment';
   static String updateUserDetails='/updateUserDetails';
   static String addNewUser='/newUser';

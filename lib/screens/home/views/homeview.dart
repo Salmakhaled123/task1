@@ -19,8 +19,8 @@ class HomeView extends StatelessWidget {
           var cubit=BlocProvider.of<LoginCubit>(context);
           return IconButton(onPressed: ()
           {
-               cubit.userLogOut();
-               GoRouter.of(context).pop();
+               cubit.userLogOut(context);
+
           }, icon: const Icon(Icons.logout_outlined));
         },
       )

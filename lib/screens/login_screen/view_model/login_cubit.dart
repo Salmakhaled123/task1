@@ -1,12 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meta/meta.dart';
+import 'package:taskmanager/core/approuter.dart';
 import 'package:taskmanager/core/cacheHelper.dart';
 import 'package:taskmanager/core/diohelper.dart';
 import 'package:taskmanager/core/loginmodel.dart';
+import 'package:taskmanager/screens/login_screen/views/login_view.dart';
 
 part 'login_state.dart';
 
@@ -41,12 +44,21 @@ class LoginCubit extends Cubit<LoginState> {
 
 
   }
- Future userLogOut()async
+ Future userLogOut(context)async
   {
-    String token=CacheHelper.getData(key: 'token');
-
-  // await DioHelper.postData( 'auth/logout',  email,);
+ try {
+   await  DioHelper.postData(endPoint: 'auth/logout',options:Options(headers: {
+       'Authorization':'Bearer${CacheHelper.getData(key: 'token')}'
+     }));
    emit(LogoutSuccessfully());
+   print('success');
+  Navigator.push(context, MaterialPageRoute(builder: (context)=>const LoginView()));
+
+ } on Exception catch (e)
+ {
+   emit(LogoutFailure());
+ }
+
 
   }
   bool isChecked=false;
