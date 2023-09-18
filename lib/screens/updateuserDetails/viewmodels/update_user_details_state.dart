@@ -1,4 +1,4 @@
-part of 'updateuserdetails.dart';
+part of 'updateuserdetailsCubit.dart';
 
 @immutable
 abstract class UpdateUserDetailsState {}

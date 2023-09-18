@@ -11,7 +11,7 @@ import 'package:taskmanager/screens/addnewuser/viewmodels/add_new_user_cubit.dar
 import 'package:taskmanager/screens/getDepartments/view%20models/get_all_departments_cubit.dart';
 import 'package:taskmanager/screens/login_screen/view_model/login_cubit.dart';
 import 'package:taskmanager/screens/update_department/view_models/update_department_cubit.dart';
-import 'package:taskmanager/screens/updateuserDetails/viewmodels/updateuserdetails.dart';
+import 'package:taskmanager/screens/updateuserDetails/viewmodels/updateuserdetailsCubit.dart';
 import 'package:taskmanager/screens/updateuserDetails/views/updateuserDetailsView.dart';
 
 void main()async {

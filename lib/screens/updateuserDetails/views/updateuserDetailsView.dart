@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taskmanager/screens/updateuserDetails/viewmodels/updateuserdetails.dart';
+import 'package:taskmanager/screens/updateuserDetails/viewmodels/updateuserdetailsCubit.dart';
 
 import '../../../core/appcolors.dart';
 import '../../../core/appfont.dart';
@@ -112,6 +112,7 @@ TextEditingController nameController=TextEditingController();
                             children: [
                               Radio(activeColor: AppColors.primaryColor,
                                   value: 0, groupValue: 'types', onChanged: (value){
+
                                    // cubit.changeType(value);
 
                                   }),
