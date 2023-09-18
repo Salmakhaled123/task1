@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meta/meta.dart';
 import 'package:taskmanager/core/allusersmodel.dart';
-import 'package:taskmanager/core/approuter.dart';
 import 'package:taskmanager/core/cacheHelper.dart';
 import 'package:taskmanager/core/diohelper.dart';
 
