@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:taskmanager/core/cacheHelper.dart';
 import 'package:taskmanager/core/diohelper.dart';
@@ -8,7 +9,7 @@ part 'add_new_user_state.dart';
 
 class AddNewUserCubit extends Cubit<AddNewUserState> {
   AddNewUserCubit() : super(AddNewUserInitial());
-  dynamic type;
+  //dynamic type;
   changeType(value)
   {
     if(value==0 || value==1 ||value==2)
@@ -17,7 +18,7 @@ class AddNewUserCubit extends Cubit<AddNewUserState> {
 
       }
   }
- Future addNewUser(UserModel model)async
+ Future addNewUser(UserModel model,context)async
   {
 
     try{
@@ -33,6 +34,7 @@ class AddNewUserCubit extends Cubit<AddNewUserState> {
       }));
       print('add new user success');
       print(data.data['message']);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('added successfully')));
 
       emit(AddNewUserSuccess());
     }catch(error){

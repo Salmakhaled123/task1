@@ -16,4 +16,9 @@ class AppFont {
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w500,
   );
+  static const text10 = TextStyle(
+    fontSize: 10,
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w400,
+  );
 }

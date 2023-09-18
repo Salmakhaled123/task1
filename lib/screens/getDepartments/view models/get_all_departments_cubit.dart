@@ -17,11 +17,11 @@ class GetAllDepartmentsCubit extends Cubit<GetAllDepartmentsState> {
     Response  data=await  DioHelper.getData(endPoint: 'department/index');
     data.data['data'].forEach((item){
       departments.add(DepartmentDataModel.fromJson(item));
-      emit(GetAllDepartmentsSuccess());
     });
-
+    emit(GetAllDepartmentsSuccess());
   } on Exception catch (e) {
     print(e.toString());
+    emit(GetAllDepartmentsFailure());
     // TODO
   }
 

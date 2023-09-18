@@ -157,7 +157,7 @@ class AddNewUserViewBody extends StatelessWidget {
                                     email: emailController.text,
                                     phone: phoneController.text,
                                     password: passController.text,
-                                  ));
+                                  ),context);
                                  // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('added successfully')));
                                 } on Exception catch (e) {
                                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('there is an error')));

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:taskmanager/core/cacheHelper.dart';
@@ -22,8 +23,10 @@ class UpdateDepartmentCubit extends Cubit<UpdateDepartmentState> {
           }));
     BlocProvider.of<GetAllDepartmentsCubit>(context).getAllDepartments();
     print('updated success');
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('updated successfully')));
     emit(UpdateDepartmentSuccess());
     }catch(error){
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('something went wrong in update')));
 
     }
   }
